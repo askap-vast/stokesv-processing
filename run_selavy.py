@@ -30,11 +30,8 @@ def parse_args():
                         
     parser.add_argument('--out-dir',
                         type=str,
+
                         help='Path to directory containing the finished data products'
-                        )
-    parser.add_argument('--epoch-dir',
-                        type=str,
-                        help='Name of epoch-based directory inside --out-dir'
                         )
     parser.add_argument('--submit-jobs',
                         action='store_true',
