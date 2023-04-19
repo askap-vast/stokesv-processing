@@ -24,14 +24,32 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('imagedir',
                         type=str,
- 
                         help='Path to directory containing Stokes V images'
                         )
                         
     parser.add_argument('--out-dir',
                         type=str,
-
                         help='Path to directory containing the finished data products'
+                        )
+    parser.add_argument('--wall-time',
+                        type=str,
+                        default='01:30:00'
+                        help='Wall time for each slurm job'
+                        )
+    parser.add_argument('--mem-request',
+                        type=str,
+                        default='110G'
+                        help='Memory request for each slurm job'
+                        )
+    parser.add_argument('--ntasks',
+                        type=str,
+                        default='21'
+                        help='Number of tasks for each slurm job'
+                        )
+    parser.add_argument('--ntasks-per-node',
+                        type=str,
+                        default='21'
+                        help='Number of tasks per node for each slurm job'
                         )
     parser.add_argument('--submit-jobs',
                         action='store_true',
@@ -50,7 +68,7 @@ def fix_stokesaxis(imagedir):
            header['CRVAL4'] = 1.0
     return
 
-def generate_files(filename, jobname, invert=False, outdir="."):
+def generate_files(filename, jobname, args, invert=False, outdir="."):
     logger = logging.getLogger('run_selavy.generate_files')
     logger.info("Generating sbatch with: ")
     logger.info(f"filename: {filename}")
@@ -109,6 +127,7 @@ def main(args):
             logger.info(f"{image_path.name} (pos) has not been run.")
             generate_files(str(image_path),
                            f"selavy-{sbid}",
+                           args,
                            invert=invert,
                            outdir=str(out_dir)
                            )
@@ -132,6 +151,7 @@ def main(args):
             logger.info(f"{image_path.name} (neg) has not been run.")
             generate_files(str(image_path),
                            f"nselavy-{sbid}",
+                           args,
                            invert=invert,
                            outdir=str(out_dir)
                            )
