@@ -152,7 +152,7 @@ def makeparsets(pathpattern, invert, outdir="."):
 
     logger.info('done!')
 
-def _write_sbatch(job_name, imagepath, invert):
+def _write_sbatch(job_name, imagepath, invert, walltime, ntasks, ntasks_per_node, memory):
     '''write sbatch files'''
     logger = logging.getLogger('makeparset.sbatch')
 
@@ -170,10 +170,10 @@ def _write_sbatch(job_name, imagepath, invert):
     with open(sbatch_name, 'w') as fp:
         fp.write(f'''#!/bin/bash
 #SBATCH --job-name {job_name}
-#SBATCH --time=01:30:00
-#SBATCH --ntasks=21
-#SBATCH --ntasks-per-node=21
-#SBATCH --mem=110G
+#SBATCH --time={walltime}
+#SBATCH --ntasks={ntasks}
+#SBATCH --ntasks-per-node={ntasks_per_node}
+#SBATCH --mem={memory}
 
 module use /software/projects/ja3/modulefiles
 module load singularity/3.8.6
