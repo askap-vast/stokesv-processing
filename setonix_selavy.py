@@ -152,7 +152,13 @@ def makeparsets(pathpattern, invert, outdir="."):
 
     logger.info('done!')
 
-def _write_sbatch(job_name, imagepath, invert, walltime, ntasks, ntasks_per_node, memory):
+def _write_sbatch(job_name,
+                  imagepath,
+                  invert,
+                  walltime = '01:30:00',
+                  ntasks = '21',
+                  ntasks_per_node = '21',
+                  memory = '110G'):
     '''write sbatch files'''
     logger = logging.getLogger('makeparset.sbatch')
 
