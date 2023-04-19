@@ -155,10 +155,10 @@ def makeparsets(pathpattern, invert, outdir="."):
 def _write_sbatch(job_name,
                   imagepath,
                   invert,
-                  walltime = '01:30:00',
-                  ntasks = '21',
-                  ntasks_per_node = '21',
-                  memory = '110G'):
+                  walltime,
+                  ntasks,
+                  ntasks_per_node,
+                  memory:
     '''write sbatch files'''
     logger = logging.getLogger('makeparset.sbatch')
 
@@ -190,7 +190,14 @@ srun selavy -c {parset_name}
 
     return sbatch_name
 
-def writebatch(job_name, pathpattern, invert):
+def writebatch(job_name,
+               pathpattern,
+               invert,
+               walltime = '01:30:00',
+               ntasks = '21',
+               ntasks_per_node = '21',
+               memory = '110G',
+               ):
     '''write the final .sh file for submission'''
     logger = logging.getLogger('writebatch')
 
@@ -200,7 +207,14 @@ def writebatch(job_name, pathpattern, invert):
 
     sbatch_names = []
     for imagepath in images:
-        sbatch_name = _write_sbatch(job_name, imagepath, invert)
+        sbatch_name = _write_sbatch(job_name,
+                                    imagepath,
+                                    invert,
+                                    walltime,
+                                    ntasks,
+                                    ntasks_per_node,
+                                    memory,
+                                    )
         sbatch_names.append(sbatch_name)
         logger.info(f"Written {sbatch_name}")
 
