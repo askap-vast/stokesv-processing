@@ -33,22 +33,22 @@ def parse_args():
                         )
     parser.add_argument('--wall-time',
                         type=str,
-                        default='01:30:00'
+                        default='01:30:00',
                         help='Wall time for each slurm job'
                         )
     parser.add_argument('--mem-request',
                         type=str,
-                        default='110G'
+                        default='110G',
                         help='Memory request for each slurm job'
                         )
     parser.add_argument('--ntasks',
                         type=str,
-                        default='21'
+                        default='21',
                         help='Number of tasks for each slurm job'
                         )
     parser.add_argument('--ntasks-per-node',
                         type=str,
-                        default='21'
+                        default='21',
                         help='Number of tasks per node for each slurm job'
                         )
     parser.add_argument('--submit-jobs',
