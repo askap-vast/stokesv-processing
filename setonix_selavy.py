@@ -158,7 +158,8 @@ def _write_sbatch(job_name,
                   walltime,
                   ntasks,
                   ntasks_per_node,
-                  memory:
+                  memory
+                  ):
     '''write sbatch files'''
     logger = logging.getLogger('makeparset.sbatch')
 
