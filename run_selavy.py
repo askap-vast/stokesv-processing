@@ -81,7 +81,7 @@ def generate_files(filename, jobname, args, invert=False, outdir="."):
     setonix_selavy.writebatch(job_name=jobname,
                               pathpattern=filename,
                               invert=invert,
-                              walltime=args.wall_time
+                              walltime=args.wall_time,
                               ntasks=args.ntasks,
                               ntasks_per_node=args.ntasks_per_node,
                               memory=args.mem_request,
