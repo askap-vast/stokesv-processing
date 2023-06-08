@@ -92,6 +92,12 @@ def main(args):
     image_dir = Path(args.imagedir).resolve()
     out_dir = Path(args.out_dir).resolve()
     
+    if not out_dir.is_dir():
+        out_dir.mkdir(parents=True)
+    if not image_dir.is_dir():
+        print("{image_dir} does not exist!")
+        exit()
+    
     fix_stokesaxis(image_dir)
     
     num_jobs = 0
