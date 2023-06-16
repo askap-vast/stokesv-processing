@@ -55,7 +55,7 @@ def parse_args():
                         type=str,
                         default='ja3',
                         help='Number of tasks per node for each slurm job'
-                        )                                                            )
+                        ) 
     parser.add_argument('--submit-jobs',
                         action='store_true',
                         help='Submit the jobs'
