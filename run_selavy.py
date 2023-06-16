@@ -51,6 +51,11 @@ def parse_args():
                         default='21',
                         help='Number of tasks per node for each slurm job'
                         )
+    parser.add_argument('--project-code',
+                        type=str,
+                        default='ja3',
+                        help='Number of tasks per node for each slurm job'
+                        )                                                            )
     parser.add_argument('--submit-jobs',
                         action='store_true',
                         help='Submit the jobs'
@@ -85,6 +90,7 @@ def generate_files(filename, jobname, args, invert=False, outdir="."):
                               ntasks=args.ntasks,
                               ntasks_per_node=args.ntasks_per_node,
                               memory=args.mem_request,
+                              project_code=args.project_code
                               )
     return
 
