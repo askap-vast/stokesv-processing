@@ -185,7 +185,7 @@ def _write_sbatch(job_name,
 #SBATCH --account={project_code}
 
 module use /software/projects/ja3/modulefiles
-module load singularity/3.11.4-askap
+module load singularity/3.11.4-slurm
 module load askapsoft/1.10.0.a
 
 srun selavy -c {parset_name}        
