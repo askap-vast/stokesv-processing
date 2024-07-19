@@ -184,9 +184,13 @@ def _write_sbatch(job_name,
 #SBATCH --mem={memory}
 #SBATCH --account={project_code}
 
-module use /software/projects/ja3/modulefiles
-module load singularity/3.11.4-slurm
-module load askapsoft/1.10.0.a
+module use /software/projects/askaprt/modulefiles
+module load singularity/4.1.0-askap
+module load askappipeline/2.5.14
+module load askapsoft/1.11.1
+module load askaputils/1.0
+module load casa/5.7
+module load aces-apps/1.3.1
 
 srun selavy -c {parset_name}        
 ''')
