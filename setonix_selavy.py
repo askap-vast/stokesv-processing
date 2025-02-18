@@ -158,7 +158,8 @@ def _write_sbatch(job_name,
                   walltime,
                   ntasks,
                   ntasks_per_node,
-                  memory
+                  memory,
+                  project_code
                   ):
     '''write sbatch files'''
     logger = logging.getLogger('makeparset.sbatch')
@@ -181,10 +182,11 @@ def _write_sbatch(job_name,
 #SBATCH --ntasks={ntasks}
 #SBATCH --ntasks-per-node={ntasks_per_node}
 #SBATCH --mem={memory}
+#SBATCH --account={project_code}
 
-module use /software/projects/ja3/modulefiles
-module load singularity/3.8.6
-module load askapsoft/1.10.0.a
+module use /software/projects/askaprt/modulefiles
+module load singularity/4.1.0-mpi
+module load askapsoft/1.17.5
 
 srun selavy -c {parset_name}        
 ''')
@@ -198,6 +200,7 @@ def writebatch(job_name,
                ntasks = '21',
                ntasks_per_node = '21',
                memory = '110G',
+               project_code='ja3'
                ):
     '''write the final .sh file for submission'''
     logger = logging.getLogger('writebatch')
@@ -215,6 +218,7 @@ def writebatch(job_name,
                                     ntasks,
                                     ntasks_per_node,
                                     memory,
+                                    project_code
                                     )
         sbatch_names.append(sbatch_name)
         logger.info(f"Written {sbatch_name}")
