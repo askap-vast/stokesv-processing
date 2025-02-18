@@ -186,7 +186,7 @@ def _write_sbatch(job_name,
 
 module use /software/projects/askaprt/modulefiles
 module load singularity/4.1.0-mpi
-module load askapsoft/1.15.0
+module load askapsoft/1.17.5
 
 srun selavy -c {parset_name}        
 ''')
